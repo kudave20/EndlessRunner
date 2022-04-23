@@ -105,7 +105,19 @@ public class Player : MonoBehaviour
 
         if (isGrounded && slideCounter <= 0f && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
         {
-            slideCounter = 0.5f;
+            slideCounter = 1.5f;
+            StartCoroutine(SlideCoroutine());
         }
+    }
+
+    private IEnumerator SlideCoroutine()
+    {
+        rb.rotation = Quaternion.Euler(-90f, 0f, 0f);
+        rb.position = new Vector3(rb.position.x, -0.5f, rb.position.z);
+
+        yield return new WaitForSeconds(1f);
+
+        rb.rotation = Quaternion.identity;
+        rb.position = new Vector3(rb.position.x, 0f, rb.position.z);
     }
 }
