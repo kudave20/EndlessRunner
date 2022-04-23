@@ -11,18 +11,50 @@ public class Player : MonoBehaviour
 
     private float xPosTo;
 
+    private bool isGrounded;
+
     private SIDE side;
 
     private Rigidbody rb;
 
     private void Start()
     {
+        isGrounded = true;
+
         side = SIDE.Mid;
 
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
+    {
+        ChangePosX();
+        Jump();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Mathf.Abs(xPos - xPosTo) < 0.1f)
+        {
+            rb.position = new Vector3(xPosTo, rb.position.y, rb.position.z);
+            rb.MovePosition(rb.position + new Vector3(0f, yPos, 5f) * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rb.MovePosition(rb.position + new Vector3((xPosTo - xPos) * 10f, yPos, 5f) * Time.fixedDeltaTime);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    // 캐릭터 좌우이동
+    private void ChangePosX()
     {
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -54,16 +86,13 @@ public class Player : MonoBehaviour
         xPos = Mathf.Lerp(xPos, xPosTo, Time.deltaTime * 10f);
     }
 
-    private void FixedUpdate()
+    // 캐릭터 점프
+    private void Jump()
     {
-        if (Mathf.Abs(xPos - xPosTo) < 0.1f)
+        if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
-            rb.position = new Vector3(xPosTo, rb.position.y, rb.position.z);
-            rb.MovePosition(rb.position + new Vector3(0f, yPos, 5f) * Time.fixedDeltaTime);
-        }
-        else
-        {
-            rb.MovePosition(rb.position + new Vector3((xPosTo - xPos) * 10f, yPos, 5f) * Time.fixedDeltaTime);
+            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            isGrounded = false;
         }
     }
 }
