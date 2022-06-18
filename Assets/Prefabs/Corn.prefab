@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7364353701621284178}
   - component: {fileID: 4641405221284965587}
   - component: {fileID: 6673998497529526825}
+  - component: {fileID: 4208453826844539167}
   m_Layer: 0
   m_Name: Corn
   m_TagString: Untagged
@@ -96,3 +97,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &4208453826844539167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449806076013520309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7991a05893a4ff14a852a60a8a1ab802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 3865173594699438410, guid: 3dd2af7bd15e20f4c86307c11e6bb548, type: 3}

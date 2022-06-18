@@ -7,8 +7,6 @@ public enum SIDE { Left, Mid, Right }
 public class Player : MonoBehaviour
 {
     private float xPos;
-    private float yPos;
-
     private float xPosTo;
 
     private float slideCounter;

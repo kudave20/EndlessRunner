@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2540799908868446301}
   - component: {fileID: 2540799908868446290}
   - component: {fileID: 2540799908868446291}
+  - component: {fileID: 3604571844469856756}
   m_Layer: 0
   m_Name: Hurdle
   m_TagString: Untagged
@@ -95,3 +96,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3604571844469856756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540799908868446288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7991a05893a4ff14a852a60a8a1ab802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 3865173594699438410, guid: 3dd2af7bd15e20f4c86307c11e6bb548, type: 3}

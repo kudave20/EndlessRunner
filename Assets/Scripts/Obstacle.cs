@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject gameOverCanvas;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            // 게임 오버
+            Time.timeScale = 0f;
+            var go = Instantiate(gameOverCanvas);
         }
     }
 }
