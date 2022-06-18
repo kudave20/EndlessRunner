@@ -12,6 +12,9 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             Time.timeScale = 0f;
+
+            SoundManager.Instance.StopBGMSound();
+
             var go = Instantiate(gameOverCanvas);
         }
     }

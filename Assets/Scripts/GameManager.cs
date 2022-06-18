@@ -27,8 +27,12 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isPauseCanvasOn)
         {
-            isPauseCanvasOn = true;
             Time.timeScale = 0f;
+
+            isPauseCanvasOn = true;
+
+            SoundManager.Instance.StopBGMSound();
+
             Instantiate(pauseCanvas);
         }
     }

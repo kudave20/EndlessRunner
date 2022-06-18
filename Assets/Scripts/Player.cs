@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     private float slideCounter;
 
     private bool isGrounded;
+    private bool isSliding;
+
+    private bool isBGMPlaying;
 
     private SIDE side;
 
@@ -20,6 +23,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         isGrounded = true;
+        isSliding = false;
+        isBGMPlaying = false;
 
         side = SIDE.Mid;
 
@@ -31,6 +36,12 @@ public class Player : MonoBehaviour
         ChangePosX();
         Jump();
         Slide();
+
+        if (!isBGMPlaying && isGrounded && !isSliding)
+        {
+            SoundManager.Instance.PlayBGMSound(1f);
+            isBGMPlaying = true;
+        }
     }
 
     private void FixedUpdate()
@@ -94,6 +105,9 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
             isGrounded = false;
+
+            SoundManager.Instance.StopBGMSound();
+            isBGMPlaying = false;
         }
     }
 
@@ -103,8 +117,14 @@ public class Player : MonoBehaviour
 
         if (isGrounded && slideCounter <= 0f && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
         {
+            isSliding = true;
+
             slideCounter = 1.5f;
             StartCoroutine(SlideCoroutine());
+
+            SoundManager.Instance.StopBGMSound();
+            SoundManager.Instance.PlaySFXSound("Sliding_on_ground0", 1f);
+            isBGMPlaying = false;
         }
     }
 
@@ -117,5 +137,7 @@ public class Player : MonoBehaviour
 
         rb.rotation = Quaternion.identity;
         rb.position = new Vector3(rb.position.x, 0f, rb.position.z);
+
+        isSliding = false;
     }
 }
