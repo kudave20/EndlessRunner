@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPauseCanvasOn;
 
+    public int coin;
+
     public void Awake()
     {
         Instance = this;

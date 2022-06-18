@@ -8,6 +8,7 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
+            GameManager.Instance.coin++;
             Destroy(transform.parent.gameObject);
         }
     }
