@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum SIDE { Left, Mid, Right }
@@ -20,6 +19,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
 
+    private GameObject cam;
+
     private void Start()
     {
         isGrounded = true;
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
         side = SIDE.Mid;
 
         rb = GetComponent<Rigidbody>();
+
+        cam = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -119,6 +122,9 @@ public class Player : MonoBehaviour
         {
             isSliding = true;
 
+            cam.transform.localPosition = new Vector3(0f, 0.5f, 1f);
+            cam.transform.localRotation = Quaternion.Euler(new Vector3(90f, 0f, 0f));
+
             slideCounter = 1.5f;
             StartCoroutine(SlideCoroutine());
 
@@ -139,5 +145,8 @@ public class Player : MonoBehaviour
         rb.position = new Vector3(rb.position.x, 0f, rb.position.z);
 
         isSliding = false;
+
+        cam.transform.localPosition = new Vector3(0f, 0.5f, 0f);
+        cam.transform.localRotation = Quaternion.identity;
     }
 }
