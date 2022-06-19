@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         Jump();
         Slide();
 
-        if (!isBGMPlaying && isGrounded && !isSliding)
+        if (!isBGMPlaying && isGrounded && !isSliding && GameManager.Instance.isGameStarted)
         {
             SoundManager.Instance.PlayBGMSound(1f);
             isBGMPlaying = true;
@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.Instance.isGameStarted) return;
+
         if (Mathf.Abs(xPos - xPosTo) < 0.1f)
         {
             rb.position = new Vector3(xPosTo, rb.position.y, rb.position.z);

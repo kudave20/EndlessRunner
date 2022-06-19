@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,9 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject pauseCanvas;
 
-    public bool isPauseCanvasOn;
+    public bool isGameStarted { get; set; }
 
-    public int coin;
+    public bool isPauseCanvasOn { get; set; }
+
+    public int coin { get; set; }
+
+    [SerializeField]
+    private Text pressToStart;
 
     public void Awake()
     {
@@ -34,6 +40,15 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.StopBGMSound();
 
             Instantiate(pauseCanvas);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Time.timeScale = 1f;
+
+            isGameStarted = true;
+
+            Destroy(pressToStart.gameObject);
         }
     }
 
