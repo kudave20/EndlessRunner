@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             Instantiate(pauseCanvas);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isGameStarted)
         {
             Time.timeScale = 1f;
 
